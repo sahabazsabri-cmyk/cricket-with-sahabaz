@@ -1,169 +1,159 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Virat Kohli - Cricket with Sahabaz</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-<h2>🔥 Live Cricket Score</h2>
-<div id="liveScore">Loading live score...</div>
-  <script>
-async function getLiveScore() {
-  try {
-    const response = await fetch("https://api.cricapi.com/v1/currentMatches?apikey=93de34b6-ca9c-439e-b485-f614acd7299c&offset=0");
-    const data = await response.json();
-
-    if (data.data && data.data.length > 0) {
-      const match = data.data[0];
-
-      document.getElementById("liveScore").innerHTML = `
-        <h3>${match.name}</h3>
-        <p>Status: ${match.status}</p>
-        <p>Score: ${match.score ? match.score[0].r + "/" + match.score[0].w + " (" + match.score[0].o + ")" : "Not available"}</p>
-      `;
-    } else {
-      document.getElementById("liveScore").innerHTML = "No live matches right now.";
+  <title>Cricket with Sahabaz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin:0;
+      font-family:'Segoe UI', sans-serif;
+      background:#eef2f7;
     }
-  } catch (error) {
-    document.getElementById("liveScore").innerHTML = "Error loading live score.";
-  }
-}
-
-getLiveScore();
-setInterval(getLiveScore, 30000); // auto refresh every 30 seconds
-</script>
-body{
-margin:0;
-font-family:'Segoe UI', sans-serif;
-background:#eef2f7;
-}
-
-header{
-background: linear-gradient(90deg,#0f2027,#203a43,#2c5364);
-color:white;
-padding:18px;
-font-size:22px;
-text-align:center;
-font-weight:bold;
-}
-
-nav{
-background:#0f9d58;
-padding:10px;
-text-align:center;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
-.container{
-padding:20px;
-}
-
-.profile-card{
-background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-text-align:center;
-}
-
-.profile-card img{
-width:140px;
-border-radius:50%;
-border:4px solid #0f9d58;
-}
-
-.role-badge{
-display:inline-block;
-background:#2563eb;
-color:white;
-padding:5px 12px;
-border-radius:20px;
-font-size:12px;
-margin-top:5px;
-}
-
-.stats-table{
-margin-top:20px;
-width:100%;
-border-collapse:collapse;
-}
-
-.stats-table th,
-.stats-table td{
-padding:10px;
-border-bottom:1px solid #ddd;
-text-align:left;
-}
-
-.stats-table th{
-background:#f1f5f9;
-}
-
-</style>
+    header {
+      background: linear-gradient(90deg,#0f2027,#203a43,#2c5364);
+      color:white;
+      padding:18px;
+      text-align:center;
+      font-weight:bold;
+      font-size:24px;
+    }
+    nav {
+      background:#0f9d58;
+      display:flex;
+      justify-content:center;
+      gap:25px;
+      padding:12px;
+    }
+    nav a {
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:14px;
+    }
+    nav a:hover {
+      text-decoration:underline;
+    }
+    .container {
+      padding:20px;
+    }
+    .card {
+      background:white;
+      padding:18px;
+      margin-bottom:18px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+    .card:hover {
+      transform:translateY(-5px);
+    }
+    .live {
+      color:red;
+      font-weight:bold;
+    }
+    .team {
+      font-size:18px;
+      margin:5px 0;
+    }
+    .score {
+      font-size:16px;
+      font-weight:bold;
+      color:#0f172a;
+    }
+    .section-title {
+      font-size:18px;
+      margin-bottom:10px;
+      font-weight:bold;
+    }
+    .player-link {
+      color:#2563eb;
+      font-weight:bold;
+      text-decoration:none;
+    }
+    .player-link:hover {
+      text-decoration:underline;
+    }
+    footer {
+      background:#1e293b;
+      color:white;
+      text-align:center;
+      padding:15px;
+      margin-top:20px;
+      font-size:13px;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-🏏 Cricket with Sahabaz
-</header>
+<header>🏏 Cricket with Sahabaz</header>
 
 <nav>
-<a href="index.html">⬅ Back to Home</a>
+  <a href="index.html">Home</a>
+  <a href="players.html">Players</a>
+  <a href="news.html">News</a>
 </nav>
 
 <div class="container">
 
-<div class="profile-card">
+  <div class="section-title">🔥 Live Cricket Score</div>
+  <div class="card" id="liveScore">
+    Loading live score...
+  </div>
 
-<img src="https://via.placeholder.com/140" alt="Virat Kohli">
+  <div class="section-title">⭐ Featured Player</div>
+  <div class="card">
+    <h2>Virat Kohli</h2>
+    <p>Top Order Batsman</p>
+    <a class="player-link" href="virat.html">View Profile</a>
+  </div>
 
-<h2>Virat Kohli</h2>
-<div class="role-badge">Top Order Batsman</div>
+  <div class="section-title">🏏 Other Matches</div>
+  <div class="card">
+    <div class="team">Bangladesh vs Pakistan</div>
+    <div class="score">BAN 180/5 (35)</div>
+  </div>
 
-<table class="stats-table">
-<tr><th>Matches</th><td>500+</td></tr>
-<tr><th>Runs</th><td>25000+</td></tr>
-<tr><th>Average</th><td>58.2</td></tr>
-<tr><th>Centuries</th><td>75+</td></tr>
-<tr><th>Strike Rate</th><td>92.5</td></tr>
-</table>
+  <div class="card">
+    <div class="team">England vs South Africa</div>
+    <div class="score">ENG 300/7 (50)</div>
+  </div>
 
 </div>
 
-</div>
+<footer>
+© 2026 Cricket with Sahabaz | All Rights Reserved
+</footer>
 
-</body>
-</html></body>
-</html>
+<!-- Live Score Script -->
 <script>
-let runs = 245;
-let wickets = 6;
-let balls = 3; 
-
-function updateScore(){
-  runs += Math.floor(Math.random()*6);
-  
-  if(Math.random() < 0.15){
-    wickets += 1;
+async function getLiveScore() {
+  const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c";
+  try {
+    const response = await fetch(`https://api.cricapi.com/v1/cricScore?apikey=${apiKey}`);
+    const data = await response.json();
+    if (data.data && data.data.length > 0) {
+      let match = data.data[0];
+      document.getElementById("liveScore").innerHTML = `
+        <h3>${match.t1} vs ${match.t2}</h3>
+        <p>${match.t1s ? match.t1s : ""}</p>
+        <p>${match.t2s ? match.t2s : ""}</p>
+        <p>Status: ${match.status}</p>
+      `;
+    } else {
+      document.getElementById("liveScore").innerHTML = "No live match available.";
+    }
+  } catch (error) {
+    document.getElementById("liveScore").innerHTML = "Error loading live score.";
+    console.error(error);
   }
-
-  balls++;
-  if(balls >= 6){
-    balls = 0;
-  }
-
-  document.querySelector(".score").innerText =
-  "India " + runs + "/" + wickets + " (42." + balls + ")";
 }
 
-setInterval(updateScore, 3000);
+// Initial load
+getLiveScore();
+
+// Auto refresh every 30 seconds
+setInterval(getLiveScore, 30000);
 </script>
-<h2>🏏 Live Match Center</h2>
-<div id="live-score">
-  <!-- Live score will appear here -->
-</div>
+
+</body>
+</html>
