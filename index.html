@@ -8,12 +8,137 @@
 
 body{
 margin:0;
-font-family: Arial, sans-serif;
-background:#f1f1f1;
+font-family: 'Segoe UI', sans-serif;
+background:#eef2f7;
 }
 
 header{
+background: linear-gradient(90deg,#0f2027,#203a43,#2c5364);
+color:white;
+padding:18px;
+font-size:24px;
+font-weight:bold;
+text-align:center;
+letter-spacing:1px;
+}
+
+nav{
+background:#0f9d58;
+display:flex;
+justify-content:center;
+gap:25px;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+font-size:14px;
+}
+
+nav a:hover{
+text-decoration:underline;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:18px;
+margin-bottom:18px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.live{
+color:red;
+font-weight:bold;
+}
+
+.team{
+font-size:18px;
+margin:5px 0;
+}
+
+.score{
+font-size:16px;
+font-weight:bold;
+color:#0f172a;
+}
+
+.section-title{
+font-size:18px;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.player-link{
+color:#2563eb;
+font-weight:bold;
+text-decoration:none;
+}
+
+.player-link:hover{
+text-decoration:underline;
+}
+
+footer{
 background:#1e293b;
 color:white;
+text-align:center;
 padding:15px;
-font
+margin-top:20px;
+font-size:13px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+🏏 Cricket with Sahabaz
+</header>
+
+<nav>
+<a href="#">Live Scores</a>
+<a href="players.html">Players</a>
+<a href="#">News</a>
+</nav>
+
+<div class="container">
+
+<div class="section-title">Live Matches</div>
+
+<div class="card">
+<div class="live">● LIVE</div>
+<div class="team">India vs Australia</div>
+<div class="score">India 245/6 (42.3)</div>
+<a class="player-link" href="virat.html">View Virat Kohli Profile</a>
+</div>
+
+<div class="card">
+<div class="team">Bangladesh vs Pakistan</div>
+<div class="score">BAN 180/5 (35)</div>
+</div>
+
+<div class="card">
+<div class="team">England vs South Africa</div>
+<div class="score">ENG 300/7 (50)</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 Cricket with Sahabaz | All Rights Reserved
+</footer>
+
+</body>
+</html>
