@@ -90,7 +90,7 @@
   <div class="card">
     <h3>India vs Australia</h3>
     <p class="live">LIVE</p>
-    <p>Score: 245/6 (42 Overs)</p>
+    <p id="score">Score: 120/2 (20 Overs)</p>
   </div>
 
   <div class="card">
@@ -110,6 +110,22 @@
 </div>
 
 <script>
+let runs = 120;
+let wickets = 2;
+let overs = 20;
+
+function updateScore(){
+  runs += Math.floor(Math.random()*7); 
+  if(Math.random() < 0.2){
+    wickets += 1;
+  }
+  overs += 0.1;
+  document.getElementById("score").innerText =
+    "Score: " + runs + "/" + wickets + " (" + overs.toFixed(1) + " Overs)";
+}
+
+setInterval(updateScore, 3000);
+
 function addComment(){
   var input=document.getElementById("commentInput");
   var text=input.value;
