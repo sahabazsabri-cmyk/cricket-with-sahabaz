@@ -1,86 +1,32 @@
+    }
+  }
+
+  getLiveScore();
+  setInterval(getLiveScore, 30000); // refresh every 30s
+</script>
+
+</body>
+</html>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Cricket with Sahabaz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      margin:0;
-      font-family:'Segoe UI', sans-serif;
-      background:#eef2f7;
-    }
-    header {
-      background: linear-gradient(90deg,#0f2027,#203a43,#2c5364);
-      color:white;
-      padding:18px;
-      text-align:center;
-      font-weight:bold;
-      font-size:24px;
-    }
-    nav {
-      background:#0f9d58;
-      display:flex;
-      justify-content:center;
-      gap:25px;
-      padding:12px;
-    }
-    nav a {
-      color:white;
-      text-decoration:none;
-      font-weight:bold;
-      font-size:14px;
-    }
-    nav a:hover {
-      text-decoration:underline;
-    }
-    .container {
-      padding:20px;
-    }
-    .card {
-      background:white;
-      padding:18px;
-      margin-bottom:18px;
-      border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
-      transition:0.3s;
-    }
-    .card:hover {
-      transform:translateY(-5px);
-    }
-    .live {
-      color:red;
-      font-weight:bold;
-    }
-    .team {
-      font-size:18px;
-      margin:5px 0;
-    }
-    .score {
-      font-size:16px;
-      font-weight:bold;
-      color:#0f172a;
-    }
-    .section-title {
-      font-size:18px;
-      margin-bottom:10px;
-      font-weight:bold;
-    }
-    .player-link {
-      color:#2563eb;
-      font-weight:bold;
-      text-decoration:none;
-    }
-    .player-link:hover {
-      text-decoration:underline;
-    }
-    footer {
-      background:#1e293b;
-      color:white;
-      text-align:center;
-      padding:15px;
-      margin-top:20px;
-      font-size:13px;
-    }
+    body {margin:0; font-family:'Segoe UI', sans-serif; background:#eef2f7;}
+    header {background: linear-gradient(90deg,#0f2027,#203a43,#2c5364); color:white; padding:18px; text-align:center; font-weight:bold; font-size:24px;}
+    nav {background:#0f9d58; display:flex; justify-content:center; gap:25px; padding:12px;}
+    nav a {color:white; text-decoration:none; font-weight:bold; font-size:14px;}
+    nav a:hover {text-decoration:underline;}
+    .container {padding:20px;}
+    .section-title {font-size:18px; margin-bottom:10px; font-weight:bold;}
+    .card {background:white; padding:18px; margin-bottom:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:0.3s;}
+    .card:hover {transform:translateY(-5px);}
+    .team {font-size:18px; margin:5px 0;}
+    .score {font-size:16px; font-weight:bold; color:#0f172a;}
+    .player-link {color:#2563eb; font-weight:bold; text-decoration:none;}
+    .player-link:hover {text-decoration:underline;}
+    footer {background:#1e293b; color:white; text-align:center; padding:15px; margin-top:20px; font-size:13px;}
   </style>
 </head>
 <body>
@@ -105,10 +51,10 @@
     <a class="player-link" href="virat.html">View Profile</a>
   </div>
 
-  <div class="section-title">🏏 Other Matches</div>
+  <div class="section-title">🏏 Top Matches</div>
   <div class="card">
-    <div class="team">Bangladesh vs Pakistan</div>
-    <div class="score">BAN 180/5 (35)</div>
+    <div class="team">India vs Australia</div>
+    <div class="score">IND 250/4 (45)</div>
   </div>
 
   <div class="card">
@@ -124,7 +70,7 @@
 
 <script>
   async function getLiveScore() {
-    const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c";
+    const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c"; // তোমার API key
     try {
       const response = await fetch(`https://api.cricapi.com/v1/cricScore?apikey=${apiKey}`);
       const data = await response.json();
