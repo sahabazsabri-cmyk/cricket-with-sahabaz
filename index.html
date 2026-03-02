@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cricket with Sahabaz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f4f4f4;
+      text-align: center;
+    }
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+    }
+    .card {
+      background: white;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input {
+      padding: 8px;
+      width: 60%;
+    }
+    button {
+      padding: 8px 15px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+    .comment {
+      background: #e2e8f0;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+🏏 Cricket with Sahabaz
+</header>
+
+<div class="card">
+  <h2>Live Match</h2>
+  <p>India vs Australia</p>
+  <p>Score: 245/6 (42 Overs)</p>
+  <p>Status: Live</p>
+</div>
+
+<div class="card">
+  <h2>Top Player</h2>
+  <p>Name: Virat Kohli</p>
+  <p>Runs: 12000+</p>
+  <p>Average: 58.2</p>
+</div>
+
+<div class="card">
+  <h2>Community Discussion</h2>
+  <input type="text" id="commentInput" placeholder="Write your opinion...">
+  <button onclick="addComment()">Post</button>
+  <div id="comments"></div>
+</div>
+
+<script>
+function addComment() {
+  var input = document.getElementById("commentInput");
+  var commentText = input.value;
+  if(commentText === "") return;
+
+  var commentDiv = document.createElement("div");
+  commentDiv.className = "comment";
+  commentDiv.innerText = commentText;
+
+  document.getElementById("comments").appendChild(commentDiv);
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
