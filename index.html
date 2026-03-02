@@ -96,9 +96,7 @@
 <div class="container">
 
   <div class="section-title">🔥 Live Cricket Score</div>
-  <div class="card" id="liveScore">
-    Loading live score...
-  </div>
+  <div class="card" id="liveScore">Loading live score...</div>
 
   <div class="section-title">⭐ Featured Player</div>
   <div class="card">
@@ -124,35 +122,32 @@
 © 2026 Cricket with Sahabaz | All Rights Reserved
 </footer>
 
-<!-- Live Score Script -->
 <script>
-async function getLiveScore() {
-  const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c";
-  try {
-    const response = await fetch(`https://api.cricapi.com/v1/cricScore?apikey=${apiKey}`);
-    const data = await response.json();
-    if (data.data && data.data.length > 0) {
-      let match = data.data[0];
-      document.getElementById("liveScore").innerHTML = `
-        <h3>${match.t1} vs ${match.t2}</h3>
-        <p>${match.t1s ? match.t1s : ""}</p>
-        <p>${match.t2s ? match.t2s : ""}</p>
-        <p>Status: ${match.status}</p>
-      `;
-    } else {
-      document.getElementById("liveScore").innerHTML = "No live match available.";
+  async function getLiveScore() {
+    const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c";
+    try {
+      const response = await fetch(`https://api.cricapi.com/v1/cricScore?apikey=${apiKey}`);
+      const data = await response.json();
+
+      if (data.data && data.data.length > 0) {
+        let match = data.data[0];
+        document.getElementById("liveScore").innerHTML = `
+          <h3>${match.t1} vs ${match.t2}</h3>
+          <p>${match.t1s ? match.t1s : ""}</p>
+          <p>${match.t2s ? match.t2s : ""}</p>
+          <p>Status: ${match.status}</p>
+        `;
+      } else {
+        document.getElementById("liveScore").innerHTML = "No live match available.";
+      }
+    } catch (error) {
+      document.getElementById("liveScore").innerHTML = "Error loading live score.";
+      console.error(error);
     }
-  } catch (error) {
-    document.getElementById("liveScore").innerHTML = "Error loading live score.";
-    console.error(error);
   }
-}
 
-// Initial load
-getLiveScore();
-
-// Auto refresh every 30 seconds
-setInterval(getLiveScore, 30000);
+  getLiveScore();
+  setInterval(getLiveScore, 30000); // refresh every 30s
 </script>
 
 </body>
