@@ -142,3 +142,26 @@ font-size:13px;
 
 </body>
 </html>
+<script>
+let runs = 245;
+let wickets = 6;
+let balls = 3; 
+
+function updateScore(){
+  runs += Math.floor(Math.random()*6);
+  
+  if(Math.random() < 0.15){
+    wickets += 1;
+  }
+
+  balls++;
+  if(balls >= 6){
+    balls = 0;
+  }
+
+  document.querySelector(".score").innerText =
+  "India " + runs + "/" + wickets + " (42." + balls + ")";
+}
+
+setInterval(updateScore, 3000);
+</script>
