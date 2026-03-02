@@ -1,144 +1,62 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cricket with Sahabaz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:#f1f5f9;
-    }
-
-    header{
-      background:#0f172a;
-      color:white;
-      padding:15px;
-      text-align:center;
-      font-size:22px;
-      font-weight:bold;
-    }
-
-    nav{
-      background:#1e293b;
-      padding:10px;
-      text-align:center;
-    }
-
-    nav button{
-      background:#2563eb;
-      color:white;
-      border:none;
-      padding:8px 15px;
-      margin:5px;
-      border-radius:20px;
-    }
-
-    .container{
-      padding:15px;
-    }
-
-    .card{
-      background:white;
-      padding:15px;
-      border-radius:15px;
-      margin-bottom:15px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .live{
-      color:red;
-      font-weight:bold;
-    }
-
-    input{
-      padding:8px;
-      width:65%;
-    }
-
-    button.post{
-      padding:8px 15px;
-      background:#16a34a;
-      color:white;
-      border:none;
-      border-radius:8px;
-    }
-
-    .comment{
-      background:#e2e8f0;
-      padding:8px;
-      margin-top:8px;
-      border-radius:10px;
-    }
-  </style>
+<title>Player Profile - Cricket with Sahabaz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+font-family:Arial;
+margin:0;
+background:#f2f2f2;
+text-align:center;
+}
+header{
+background:#0f172a;
+color:white;
+padding:15px;
+font-size:22px;
+}
+.card{
+background:white;
+margin:20px;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+img{
+width:150px;
+border-radius:50%;
+}
+.stat{
+margin:8px 0;
+}
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:20px;
+}
+</style>
 </head>
 <body>
 
-<header>
-🏏 Cricket with Sahabaz
-</header>
+<header>🏏 Cricket with Sahabaz</header>
 
-<nav>
-  <button>International</button>
-  <button>IPL</button>
-  <button>BPL</button>
-  <button>PSL</button>
-</nav>
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Player Image">
+<h2>Virat Kohli</h2>
+<p><b>Role:</b> Batsman</p>
+<p><b>Batting Style:</b> Right-hand bat</p>
+<p><b>Bowling Style:</b> Right-arm medium</p>
 
-<div class="container">
+<div class="stat">Matches: 500+</div>
+<div class="stat">Runs: 25000+</div>
+<div class="stat">Centuries: 75+</div>
 
-  <div class="card">
-    <h3>India vs Australia</h3>
-    <p class="live">LIVE</p>
-    <p id="score">Score: 120/2 (20 Overs)</p>
-  </div>
-
-  <div class="card">
-    <h3>Top Player</h3>
-    <p>Virat Kohli</p>
-    <p>Runs: 12000+</p>
-    <p>Average: 58.2</p>
-  </div>
-
-  <div class="card">
-    <h3>Community Discussion</h3>
-    <input type="text" id="commentInput" placeholder="Write your opinion...">
-    <button class="post" onclick="addComment()">Post</button>
-    <div id="comments"></div>
-  </div>
-
+<button>Discuss Player</button>
 </div>
-
-<script>
-let runs = 120;
-let wickets = 2;
-let overs = 20;
-
-function updateScore(){
-  runs += Math.floor(Math.random()*7); 
-  if(Math.random() < 0.2){
-    wickets += 1;
-  }
-  overs += 0.1;
-  document.getElementById("score").innerText =
-    "Score: " + runs + "/" + wickets + " (" + overs.toFixed(1) + " Overs)";
-}
-
-setInterval(updateScore, 3000);
-
-function addComment(){
-  var input=document.getElementById("commentInput");
-  var text=input.value;
-  if(text==="") return;
-
-  var div=document.createElement("div");
-  div.className="comment";
-  div.innerText=text;
-
-  document.getElementById("comments").appendChild(div);
-  input.value="";
-}
-</script>
 
 </body>
 </html>
