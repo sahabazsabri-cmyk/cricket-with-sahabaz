@@ -5,48 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cricket with Sahabaz</title>
 <style>
-  /* --- General --- */
-  body {margin:0; font-family:'Segoe UI', sans-serif; background:#f7f7f7; color:#111;}
-  a {text-decoration:none; color:#0f9d58;}
-  a:hover {text-decoration:underline;}
-  header, footer {text-align:center;}
-  
-  /* --- Header & Nav --- */
-  header {background:#2c3e50; color:white; padding:20px 10px; font-size:24px; font-weight:bold;}
-  nav {background:#0f9d58; display:flex; justify-content:center; gap:20px; padding:12px; position:sticky; top:0; z-index:100;}
-  nav a {color:white; font-weight:bold; font-size:14px;}
-  
-  /* --- Live Score Bar --- */
-  .live-bar {background:#e74c3c; color:white; padding:12px; display:flex; justify-content:space-around; font-weight:bold; overflow-x:auto;}
-  .live-bar div {margin:0 10px; white-space:nowrap;}
-  .live-badge {background:white; color:#e74c3c; border-radius:4px; padding:2px 6px; font-size:12px; margin-left:5px;}
-  
-  /* --- Container --- */
-  .container {padding:20px; max-width:1200px; margin:auto;}
-  h2.section-title {font-size:20px; margin-bottom:15px; font-weight:bold;}
-  
-  /* --- Featured Matches --- */
-  .match-carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:15px;}
-  .match-carousel::-webkit-scrollbar {display:none;}
-  .match-card {min-width:220px; background:white; padding:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-shrink:0; text-align:center;}
-  .match-card img {width:50px; height:50px;}
-  
-  /* --- Player Carousel --- */
-  .player-carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:10px;}
-  .player-carousel::-webkit-scrollbar {display:none;}
-  .player-card {min-width:160px; background:white; padding:12px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-shrink:0; text-align:center;}
-  .player-card img {width:100px; border-radius:50%; border:3px solid #0f9d58;}
-  
-  /* --- Cards --- */
-  .card {background:white; padding:18px; border-radius:12px; margin-bottom:15px; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
-  
-  /* --- Tables --- */
-  table {width:100%; border-collapse:collapse; margin-bottom:20px;}
-  th, td {padding:10px; border-bottom:1px solid #ddd;}
-  th {background:#f1f5f9;}
-  
-  /* --- Footer --- */
-  footer {background:#1e293b; color:white; padding:15px; font-size:13px;}
+/* --- General --- */
+body {margin:0; font-family:'Segoe UI', sans-serif; background:#f7f7f7; color:#111;}
+a {text-decoration:none; color:#0f9d58;}
+a:hover {text-decoration:underline;}
+header, footer {text-align:center;}
+
+/* --- Header & Nav --- */
+header {background:#2c3e50; color:white; padding:20px 10px; font-size:24px; font-weight:bold;}
+nav {background:#0f9d58; display:flex; justify-content:center; gap:20px; padding:12px; position:sticky; top:0; z-index:100;}
+nav a {color:white; font-weight:bold; font-size:14px;}
+
+/* --- Live Score Bar --- */
+.live-bar {background:#e74c3c; color:white; padding:12px; display:flex; justify-content:space-around; font-weight:bold; overflow-x:auto;}
+.live-bar div {margin:0 10px; white-space:nowrap;}
+.live-badge {background:white; color:#e74c3c; border-radius:4px; padding:2px 6px; font-size:12px; margin-left:5px;}
+
+/* --- Container --- */
+.container {padding:20px; max-width:1200px; margin:auto;}
+h2.section-title {font-size:20px; margin-bottom:15px; font-weight:bold;}
+
+/* --- Featured Matches --- */
+.match-carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:15px;}
+.match-carousel::-webkit-scrollbar {display:none;}
+.match-card {min-width:220px; background:white; padding:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-shrink:0; text-align:center;}
+.match-card img {width:50px; height:50px;}
+
+/* --- Player Carousel --- */
+.player-carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:10px;}
+.player-carousel::-webkit-scrollbar {display:none;}
+.player-card {min-width:160px; background:white; padding:12px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-shrink:0; text-align:center;}
+.player-card img {width:100px; border-radius:50%; border:3px solid #0f9d58;}
+
+/* --- Cards --- */
+.card {background:white; padding:18px; border-radius:12px; margin-bottom:15px; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
+
+/* --- Tables --- */
+table {width:100%; border-collapse:collapse; margin-bottom:20px;}
+th, td {padding:10px; border-bottom:1px solid #ddd;}
+th {background:#f1f5f9;}
+
+/* --- Footer --- */
+footer {background:#1e293b; color:white; padding:15px; font-size:13px;}
 </style>
 </head>
 <body>
