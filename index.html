@@ -1,5 +1,127 @@
     }
   }
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cricket with Sahabaz - Live Score</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {margin:0; font-family:'Segoe UI', sans-serif; background:#eef2f7;}
+    header {background: linear-gradient(90deg,#0f2027,#203a43,#2c5364); color:white; padding:18px; text-align:center; font-weight:bold; font-size:24px;}
+    nav {background:#0f9d58; display:flex; justify-content:center; gap:25px; padding:12px;}
+    nav a {color:white; text-decoration:none; font-weight:bold; font-size:14px;}
+    nav a:hover {text-decoration:underline;}
+    .container {padding:20px;}
+    .section-title {font-size:18px; margin-bottom:10px; font-weight:bold;}
+    .card {background:white; padding:18px; margin-bottom:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:0.3s;}
+    .card:hover {transform:translateY(-5px);}
+    .team {font-size:18px; margin:5px 0;}
+    .score {font-size:16px; font-weight:bold; color:#0f172a;}
+    .player-link {color:#2563eb; font-weight:bold; text-decoration:none;}
+    .player-link:hover {text-decoration:underline;}
+    .carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:10px;}
+    .carousel::-webkit-scrollbar {display:none;}
+    .carousel-card {min-width:180px; background:white; padding:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center; flex-shrink:0;}
+    .carousel-card img {width:100px; border-radius:50%; border:3px solid #0f9d58;}
+    footer {background:#1e293b; color:white; text-align:center; padding:15px; margin-top:20px; font-size:13px;}
+  </style>
+</head>
+<body>
+
+<header>🏏 Cricket with Sahabaz</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="players.html">Players</a>
+  <a href="news.html">News</a>
+  <a href="rankings.html">Rankings</a>
+</nav>
+
+<div class="container">
+
+  <div class="section-title">🔥 Live Cricket Score</div>
+  <div id="liveScore">Loading live scores...</div>
+
+  <div class="section-title">⭐ Featured Players</div>
+  <div class="carousel" id="featuredPlayers">
+    <div class="carousel-card">
+      <img src="https://via.placeholder.com/100" alt="Virat Kohli">
+      <h4>Virat Kohli</h4>
+      <p>Top Order Batsman</p>
+      <a class="player-link" href="virat.html">View Profile</a>
+    </div>
+    <div class="carousel-card">
+      <img src="https://via.placeholder.com/100" alt="Babar Azam">
+      <h4>Babar Azam</h4>
+      <p>Top Order Batsman</p>
+      <a class="player-link" href="babar.html">View Profile</a>
+    </div>
+    <div class="carousel-card">
+      <img src="https://via.placeholder.com/100" alt="Ben Stokes">
+      <h4>Ben Stokes</h4>
+      <p>All-rounder</p>
+      <a class="player-link" href="stokes.html">View Profile</a>
+    </div>
+  </div>
+
+  <div class="section-title">🏏 Top Matches</div>
+  <div id="topMatches"></div>
+
+</div>
+
+<footer>
+© 2026 Cricket with Sahabaz | All Rights Reserved
+</footer>
+
+<script>
+  const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c";
+
+  async function getLiveScore() {
+    try {
+      const response = await fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}&offset=0`);
+      const data = await response.json();
+
+      if(data.data && data.data.length > 0) {
+        let html = "";
+        data.data.forEach(match => {
+          html += `
+            <div class="card">
+              <div class="team">${match.name}</div>
+              <div class="score">${match.status}</div>
+              <p>${match.score ? match.score.map(s => `${s.r}/${s.w} (${s.o} ov)`).join(" | ") : "Score not available"}</p>
+            </div>
+          `;
+        });
+        document.getElementById("liveScore").innerHTML = html;
+      } else {
+        document.getElementById("liveScore").innerHTML = "No live matches right now.";
+      }
+    } catch(err) {
+      document.getElementById("liveScore").innerHTML = "Error loading live scores.";
+      console.error(err);
+    }
+  }
+
+  function loadTopMatches() {
+    const topMatches = [
+      {t1:"India", t2:"Australia", score:"IND 250/4 (45)"},
+      {t1:"England", t2:"South Africa", score:"ENG 300/7 (50)"},
+      {t1:"Pakistan", t2:"New Zealand", score:"PAK 280/6 (48)"}
+    ];
+
+    let html = "";
+    topMatches.forEach(m => {
+      html += `<div class="card"><div class="team">${m.t1} vs ${m.t2}</div><div class="score">${m.score}</div></div>`;
+    });
+    document.getElementById("topMatches").innerHTML = html;
+  }
+
+  getLiveScore();
+  setInterval(getLiveScore, 30000); // refresh every 30 sec
+  loadTopMatches();
+</script>
+
+</body>
+</html>
 
 <!DOCTYPE html>
 <html>
