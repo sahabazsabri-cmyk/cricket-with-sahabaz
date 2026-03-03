@@ -1,28 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Cricket with Sahabaz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {margin:0; font-family:'Segoe UI', sans-serif; background:#eef2f7;}
-    header {background: linear-gradient(90deg,#0f2027,#203a43,#2c5364); color:white; padding:18px; text-align:center; font-weight:bold; font-size:24px;}
-    nav {background:#0f9d58; display:flex; justify-content:center; gap:25px; padding:12px;}
-    nav a {color:white; text-decoration:none; font-weight:bold; font-size:14px;}
-    nav a:hover {text-decoration:underline;}
-    .container {padding:20px;}
-    .section-title {font-size:18px; margin-bottom:10px; font-weight:bold;}
-    .card {background:white; padding:18px; margin-bottom:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:0.3s;}
-    .card:hover {transform:translateY(-5px);}
-    .team {font-size:18px; margin:5px 0;}
-    .score {font-size:16px; font-weight:bold; color:#0f172a;}
-    .player-link {color:#2563eb; font-weight:bold; text-decoration:none;}
-    .player-link:hover {text-decoration:underline;}
-    .carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:10px;}
-    .carousel::-webkit-scrollbar {display:none;}
-    .carousel-card {min-width:180px; background:white; padding:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center; flex-shrink:0;}
-    .carousel-card img {width:100px; border-radius:50%; border:3px solid #0f9d58;}
-    footer {background:#1e293b; color:white; text-align:center; padding:15px; margin-top:20px; font-size:13px;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricket with Sahabaz</title>
+<style>
+  /* --- General --- */
+  body {margin:0; font-family:'Segoe UI', sans-serif; background:#f7f7f7; color:#111;}
+  a {text-decoration:none; color:#0f9d58;}
+  a:hover {text-decoration:underline;}
+  header, footer {text-align:center;}
+  
+  /* --- Header & Nav --- */
+  header {background:#2c3e50; color:white; padding:20px 10px; font-size:24px; font-weight:bold;}
+  nav {background:#0f9d58; display:flex; justify-content:center; gap:20px; padding:12px; position:sticky; top:0; z-index:100;}
+  nav a {color:white; font-weight:bold; font-size:14px;}
+  
+  /* --- Live Score Bar --- */
+  .live-bar {background:#e74c3c; color:white; padding:12px; display:flex; justify-content:space-around; font-weight:bold; overflow-x:auto;}
+  .live-bar div {margin:0 10px; white-space:nowrap;}
+  .live-badge {background:white; color:#e74c3c; border-radius:4px; padding:2px 6px; font-size:12px; margin-left:5px;}
+  
+  /* --- Container --- */
+  .container {padding:20px; max-width:1200px; margin:auto;}
+  h2.section-title {font-size:20px; margin-bottom:15px; font-weight:bold;}
+  
+  /* --- Featured Matches --- */
+  .match-carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:15px;}
+  .match-carousel::-webkit-scrollbar {display:none;}
+  .match-card {min-width:220px; background:white; padding:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-shrink:0; text-align:center;}
+  .match-card img {width:50px; height:50px;}
+  
+  /* --- Player Carousel --- */
+  .player-carousel {display:flex; overflow-x:auto; gap:15px; padding-bottom:10px;}
+  .player-carousel::-webkit-scrollbar {display:none;}
+  .player-card {min-width:160px; background:white; padding:12px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-shrink:0; text-align:center;}
+  .player-card img {width:100px; border-radius:50%; border:3px solid #0f9d58;}
+  
+  /* --- Cards --- */
+  .card {background:white; padding:18px; border-radius:12px; margin-bottom:15px; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
+  
+  /* --- Tables --- */
+  table {width:100%; border-collapse:collapse; margin-bottom:20px;}
+  th, td {padding:10px; border-bottom:1px solid #ddd;}
+  th {background:#f1f5f9;}
+  
+  /* --- Footer --- */
+  footer {background:#1e293b; color:white; padding:15px; font-size:13px;}
+</style>
 </head>
 <body>
 
@@ -34,34 +59,41 @@
   <a href="rankings.html">Rankings</a>
 </nav>
 
+<!-- Live Score Bar -->
+<div class="live-bar" id="liveBar">
+  <div>Loading live scores...</div>
+</div>
+
 <div class="container">
 
-  <div class="section-title">🔥 Live Cricket Score</div>
-  <div id="liveScore">Loading live scores...</div>
+  <!-- Featured Matches -->
+  <h2 class="section-title">🔥 Featured Matches</h2>
+  <div class="match-carousel" id="featuredMatches">
+    <!-- Match cards populated by JS -->
+  </div>
 
-  <div class="section-title">⭐ Featured Players</div>
-  <div class="carousel" id="featuredPlayers">
-    <div class="carousel-card">
+  <!-- Featured Players -->
+  <h2 class="section-title">⭐ Featured Players</h2>
+  <div class="player-carousel" id="featuredPlayers">
+    <div class="player-card">
       <img src="https://via.placeholder.com/100" alt="Virat Kohli">
       <h4>Virat Kohli</h4>
       <p>Top Order Batsman</p>
-      <a class="player-link" href="virat.html">View Profile</a>
     </div>
-    <div class="carousel-card">
+    <div class="player-card">
       <img src="https://via.placeholder.com/100" alt="Babar Azam">
       <h4>Babar Azam</h4>
       <p>Top Order Batsman</p>
-      <a class="player-link" href="babar.html">View Profile</a>
     </div>
-    <div class="carousel-card">
+    <div class="player-card">
       <img src="https://via.placeholder.com/100" alt="Ben Stokes">
       <h4>Ben Stokes</h4>
       <p>All-rounder</p>
-      <a class="player-link" href="stokes.html">View Profile</a>
     </div>
   </div>
 
-  <div class="section-title">🏏 Top Matches</div>
+  <!-- Top Matches Table -->
+  <h2 class="section-title">🏏 Top Matches</h2>
   <div id="topMatches"></div>
 
 </div>
@@ -71,241 +103,62 @@
 </footer>
 
 <script>
-  const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c";
+const apiKey = "93de34b6-ca9c-439e-b485-f614acd7299c";
 
-  async function getLiveScore() {
-    try {
-      const response = await fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}&offset=0`);
-      const data = await response.json();
-      if(data.data && data.data.length > 0) {
-        let html = "";
-        data.data.forEach(match => {
-          html += `
-            <div class="card">
-              <div class="team">${match.name}</div>
-              <div class="score">${match.status}</div>
-              <p>${match.score ? match.score.map(s => `${s.r}/${s.w} (${s.o} ov)`).join(" | ") : "Score not available"}</p>
-            </div>
-          `;
-        });
-        document.getElementById("liveScore").innerHTML = html;
-      } else {
-        document.getElementById("liveScore").innerHTML = "No live matches right now.";
-      }
-    } catch(err) {
-      document.getElementById("liveScore").innerHTML = "Error loading live scores.";
-      console.error(err);
+// Live Score Bar
+async function loadLiveBar() {
+  try {
+    const res = await fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}&offset=0`);
+    const data = await res.json();
+    if(data.data && data.data.length > 0) {
+      let html = "";
+      data.data.slice(0,5).forEach(m => {
+        html += `<div>${m.name} <span class="live-badge">${m.status}</span></div>`;
+      });
+      document.getElementById('liveBar').innerHTML = html;
+    } else {
+      document.getElementById('liveBar').innerHTML = "No live matches right now.";
     }
-  }
+  } catch(err) {document.getElementById('liveBar').innerHTML="Error loading live scores.";}
+}
 
-  function loadTopMatches() {
-    const topMatches = [
-      {t1:"India", t2:"Australia", score:"IND 250/4 (45)"},
-      {t1:"England", t2:"South Africa", score:"ENG 300/7 (50)"},
-      {t1:"Pakistan", t2:"New Zealand", score:"PAK 280/6 (48)"}
-    ];
-    let html = "";
-    topMatches.forEach(m => {
-      html += `<div class="card"><div class="team">${m.t1} vs ${m.t2}</div><div class="score">${m.score}</div></div>`;
-    });
-    document.getElementById("topMatches").innerHTML = html;
-  }
+// Featured Matches
+function loadFeaturedMatches() {
+  const matches = [
+    {team1:'India', team2:'Australia', score:'IND 250/4 (45)', img1:'https://via.placeholder.com/50', img2:'https://via.placeholder.com/50'},
+    {team1:'England', team2:'South Africa', score:'ENG 300/7 (50)', img1:'https://via.placeholder.com/50', img2:'https://via.placeholder.com/50'},
+    {team1:'Pakistan', team2:'New Zealand', score:'PAK 280/6 (48)', img1:'https://via.placeholder.com/50', img2:'https://via.placeholder.com/50'}
+  ];
+  let html = '';
+  matches.forEach(m => {
+    html += `<div class="match-card">
+      <img src="${m.img1}" alt="${m.team1}"> vs <img src="${m.img2}" alt="${m.team2}">
+      <h4>${m.team1} vs ${m.team2}</h4>
+      <p>${m.score}</p>
+    </div>`;
+  });
+  document.getElementById('featuredMatches').innerHTML = html;
+}
 
-  getLiveScore();
-  setInterval(getLiveScore, 30000);
-  loadTopMatches();
+// Top Matches Table
+function loadTopMatches() {
+  const topMatches = [
+    {t1:'India', t2:'Australia', score:'IND 250/4 (45)'},
+    {t1:'England', t2:'South Africa', score:'ENG 300/7 (50)'},
+    {t1:'Pakistan', t2:'New Zealand', score:'PAK 280/6 (48)'}
+  ];
+  let html = '';
+  topMatches.forEach(m => {
+    html += `<div class="card"><h4>${m.t1} vs ${m.t2}</h4><p>${m.score}</p></div>`;
+  });
+  document.getElementById('topMatches').innerHTML = html;
+}
+
+loadLiveBar();
+setInterval(loadLiveBar, 30000);
+loadFeaturedMatches();
+loadTopMatches();
 </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Players - Cricket with Sahabaz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {margin:0; font-family:'Segoe UI', sans-serif; background:#eef2f7;}
-    header {background: linear-gradient(90deg,#0f2027,#203a43,#2c5364); color:white; padding:18px; text-align:center; font-weight:bold; font-size:24px;}
-    nav {background:#0f9d58; display:flex; justify-content:center; gap:25px; padding:12px;}
-    nav a {color:white; text-decoration:none; font-weight:bold; font-size:14px;}
-    nav a:hover {text-decoration:underline;}
-    .container {padding:20px;}
-    .card {background:white; padding:18px; margin-bottom:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
-    .player-link {color:#2563eb; font-weight:bold; text-decoration:none;}
-    .player-link:hover {text-decoration:underline;}
-  </style>
-</head>
-<body>
-
-<header>🏏 Cricket with Sahabaz</header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="players.html">Players</a>
-  <a href="news.html">News</a>
-  <a href="rankings.html">Rankings</a>
-</nav>
-
-<div class="container">
-  <h2>Top Players</h2>
-
-  <div class="card">
-    <h3>Virat Kohli</h3>
-    <p>Top Order Batsman - India</p>
-    <a class="player-link" href="virat.html">View Profile</a>
-  </div>
-
-  <div class="card">
-    <h3>Babar Azam</h3>
-    <p>Top Order Batsman - Pakistan</p>
-    <a class="player-link" href="babar.html">View Profile</a>
-  </div>
-
-  <div class="card">
-    <h3>Ben Stokes</h3>
-    <p>All-rounder - England</p>
-    <a class="player-link" href="stokes.html">View Profile</a>
-  </div>
-
-</div>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Virat Kohli - Cricket with Sahabaz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {margin:0; font-family:'Segoe UI', sans-serif; background:#eef2f7;}
-    header {background: linear-gradient(90deg,#0f2027,#203a43,#2c5364); color:white; padding:18px; text-align:center; font-weight:bold; font-size:22px;}
-    nav {background:#0f9d58; padding:10px; text-align:center;}
-    nav a {color:white; text-decoration:none; font-weight:bold; margin:0 10px;}
-    .container {padding:20px;}
-    .profile-card {background:white; padding:25px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:center;}
-    .profile-card img {width:140px; border-radius:50%; border:4px solid #0f9d58;}
-    .role-badge {display:inline-block; background:#2563eb; color:white; padding:5px 12px; border-radius:20px; font-size:12px; margin-top:5px;}
-    .stats-table {margin-top:20px; width:100%; border-collapse:collapse;}
-    .stats-table th, .stats-table td {padding:10px; border-bottom:1px solid #ddd; text-align:left;}
-    .stats-table th {background:#f1f5f9;}
-  </style>
-</head>
-<body>
-
-<header>🏏 Cricket with Sahabaz</header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="players.html">Players</a>
-</nav>
-
-<div class="container">
-  <div class="profile-card">
-    <img src="https://via.placeholder.com/140" alt="Virat Kohli">
-    <h2>Virat Kohli</h2>
-    <div class="role-badge">Top Order Batsman</div>
-
-    <table class="stats-table">
-      <tr><th>Matches</th><td>500+</td></tr>
-      <tr><th>Runs</th><td>25000+</td></tr>
-      <tr><th>Average</th><td>58.2</td></tr>
-      <tr><th>Centuries</th><td>75+</td></tr>
-      <tr><th>Strike Rate</th><td>92.5</td></tr>
-    </table>
-  </div>
-</div>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>News - Cricket with Sahabaz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {margin:0; font-family:'Segoe UI', sans-serif; background:#eef2f7;}
-    header {background: linear-gradient(90deg,#0f2027,#203a43,#2c5364); color:white; padding:18px; text-align:center; font-weight:bold; font-size:24px;}
-    nav {background:#0f9d58; display:flex; justify-content:center; gap:25px; padding:12px;}
-    nav a {color:white; text-decoration:none; font-weight:bold; font-size:14px;}
-    nav a:hover {text-decoration:underline;}
-    .container {padding:20px;}
-    .card {background:white; padding:18px; margin-bottom:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
-    .news-link {color:#2563eb; text-decoration:none; font-weight:bold;}
-    .news-link:hover {text-decoration:underline;}
-  </style>
-</head>
-<body>
-
-<header>🏏 Cricket with Sahabaz</header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="players.html">Players</a>
-  <a href="news.html">News</a>
-  <a href="rankings.html">Rankings</a>
-</nav>
-
-<div class="container">
-  <h2>Latest Cricket News</h2>
-
-  <div class="card">
-    <h3>India wins thrilling ODI against Australia</h3>
-    <p>March 2, 2026 - India chased 320 runs successfully...</p>
-    <a class="news-link" href="#">Read more</a>
-  </div>
-
-  <div class="card">
-    <h3>Virat Kohli scores 120 in T20 series opener</h3>
-    <p>March 1, 2026 - Virat's brilliant innings helps India secure victory...</p>
-    <a class="news-link" href="#">Read more</a>
-  </div>
-
-</div>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Rankings - Cricket with Sahabaz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {margin:0; font-family:'Segoe UI', sans-serif; background:#eef2f7;}
-    header {background: linear-gradient(90deg,#0f2027,#203a43,#2c5364); color:white; padding:18px; text-align:center; font-weight:bold; font-size:24px;}
-    nav {background:#0f9d58; display:flex; justify-content:center; gap:25px; padding:12px;}
-    nav a {color:white; text-decoration:none; font-weight:bold; font-size:14px;}
-    nav a:hover {text-decoration:underline;}
-    .container {padding:20px;}
-    table {width:100%; border-collapse:collapse; margin-bottom:20px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
-    th, td {padding:10px; border-bottom:1px solid #ddd; text-align:left;}
-    th {background:#f1f5f9;}
-  </style>
-</head>
-<body>
-
-<header>🏏 Cricket with Sahabaz</header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="players.html">Players</a>
-  <a href="news.html">News</a>
-  <a href="rankings.html">Rankings</a>
-</nav>
-
-<div class="container">
-  <h2>Team Rankings (ODI)</h2>
-  <table>
-    <tr><th>Rank</th><th>Team</th><th>Points</th></tr>
-    <tr><td>1</td><td>India</td><td>125</td></tr>
-    <tr><td>2</td><td>Australia</td><td>120</td></tr>
-    <tr><td>3</td><td>England</td><td>110</td></tr>
-  </table>
-
-  <h2>Top Batsmen (ODI)</h2>
-  <table>
-    <tr><th>Rank</th><th>Player</th><th>Rating</th></tr>
-    <tr><td>1</td><td>Virat Kohli</td><td>900</td></tr>
-    <tr><td>2</td><td>Babar Azam</td><td>880</td></tr>
-    <tr><td>3</td><td>Rashid Khan</td><td>860</td></tr>
-  </table>
-
-</div>
 
 </body>
 </html>
